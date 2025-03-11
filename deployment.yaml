@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+   name: chat-deploy
+   labels:
+     app: java
+spec:
+  template:
+   metadata:
+     labels:
+       app: java
+   spec:
+     containers:
+      - name: chatroom
+        image: sushmaagowdaa/chatroom
+        ports:
+         - containerPort: 8080
+  selector:
+   matchLabels:
+     app: java
+  replicas: 2 
