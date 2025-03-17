@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools{
-        maven 'mvn'
-    }
     stages {
         stage('Git') {
             steps {
@@ -11,7 +8,7 @@ pipeline {
         }
         stage('Build'){
             steps{
-                sh 'mvn package'
+                sh ' package'
             }
         }
         
