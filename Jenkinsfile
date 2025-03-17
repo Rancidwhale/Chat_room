@@ -4,7 +4,7 @@ pipeline {
         maven 'mvn'
     }
     stages {
-        stage('Git SCM') {
+        stage('Git') {
             steps {
                 git 'https://github.com/Rancidwhale/Chat_room.git' 
             }
