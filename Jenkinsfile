@@ -6,7 +6,7 @@ pipeline {
             git 'https://github.com/Rancidwhale/Chat_room.git'
         }
       }
-      stage('maven build') {
+      stage(' build') {
         steps {
             sh 'mvn clean package'
         }
