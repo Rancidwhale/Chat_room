@@ -1,5 +1,5 @@
 pipeline {
-   agent {label 'mac-slave'}
+   agent any
    stages {
       stage('git checkout') {
         steps {
