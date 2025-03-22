@@ -7,12 +7,12 @@ pipeline{
                 git 'https://github.com/Rancidwhale/Chat_room.git'
             }
         }
-        stage('mvn compile'){
+        stage('Compile'){
             steps{
                 sh 'mvn compile'
             }
         }
-        stage('mvn Build') {
+        stage('Build') {
             steps {
                 sh 'mvn package'
             }
