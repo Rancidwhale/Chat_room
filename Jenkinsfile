@@ -1,5 +1,5 @@
 pipeline{
-    agent {label 'slave-1'}
+    agent any
 
     stages{
         stage('SCM'){
