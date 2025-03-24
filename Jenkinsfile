@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('SCM'){
             steps{
-                git 'https://github.com/Rancidwhale/Chat_room.git'
+                git credentialsId: 'git-ssh', url: 'git@github.com:Rancidwhale/Chat_room.git'
             }
         }
         stage('Compile'){
