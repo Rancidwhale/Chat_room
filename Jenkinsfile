@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     stages{
-        stage('git SCM'){
+        stage(' SCM'){
             steps{
                 git credentialsId: 'git-cred', url: 'https://github.com/Rancidwhale/Chat_room.git'
             }
