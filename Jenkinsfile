@@ -2,7 +2,7 @@ pipeline{
     agent { label 'slave1' }
 
     stages{
-        stage('SCM'){
+        stage('git SCM'){
             steps{
                 git credentialsId: 'git-ssh', url: 'git@github.com:Rancidwhale/Chat_room.git'
             }
