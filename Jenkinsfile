@@ -1,15 +1,15 @@
 pipeline{
-    agent { label 'slave1' }
+    agent any
 
     stages{
-        stage('SCM'){
+        stage('git SCM'){
             steps{
-                git credentialsId: 'git-ssh', url: 'git@github.com:Rancidwhale/Chat_room.git'
+                git credentialsId: 'git-cred', url: 'https://github.com/Rancidwhale/Chat_room.git'
             }
         }
         stage('mvn Build') {
             steps {
-                sh 'mvn package'
+                sh 'mvn clean package'
             }
         }
 
@@ -25,4 +25,3 @@ pipeline{
         }
     }   
 }
-//comment 
