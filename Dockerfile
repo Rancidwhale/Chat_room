@@ -1,8 +1,6 @@
-FROM maven AS build
+FROM maven
 WORKDIR /app
-COPY . .
-RUN mvn install
-
-FROM openjdk:17-alpine
-COPY --from=build /app/target/chatroom-0.0.1-SNAPSHOT.jar app.jar 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY . /app
+RUN mvn clean package
+CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
+EXPOSE 8080
