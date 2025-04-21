@@ -1,5 +1,9 @@
+
 pipeline{
     agent any
+    environment{
+        SCANNER_HOME = tool 'sonar-scanner'
+    }
     stages{
         stage('git'){
             steps{
@@ -13,12 +17,12 @@ pipeline{
                 }
             }
         }
-        stage('docker push'){
+        stage('Code Analysis'){
             steps{
-                script{
-                    withDockerRegistry(credentialsId: 'fe43025c-38ee-4ef6-aba0-da7ef52ef72a'){
-                        sh 'docker push abdullah77044/chatroom-2'
-                    }
+                withSonarQubeEnv('sonar-slave'){
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Chat_Room \
+                    -Dsonar.java.binaries=. \
+                    -Dsonar.projectKey=Chat_Room'''
                 }
             }
         }
@@ -31,6 +35,40 @@ pipeline{
         }
     }
 }
+
+// pipeline{
+//     agent any
+//     stages{
+//         stage('git'){
+//             steps{
+//                 git 'https://github.com/Rancidwhale/Chat_room.git'
+//             }
+//         }
+//         stage('docker image'){
+//             steps{
+//                 script{
+//                     sh 'docker build -t abdullah77044/chatroom-2 .'
+//                 }
+//             }
+//         }
+//         stage('docker push'){
+//             steps{
+//                 script{
+//                     withDockerRegistry(credentialsId: 'fe43025c-38ee-4ef6-aba0-da7ef52ef72a'){
+//                         sh 'docker push abdullah77044/chatroom-2'
+//                     }
+//                 }
+//             }
+//         }
+//         stage('deploy'){
+//             steps{
+//                 script{
+//                     sh 'docker run -itd -p 8081:8080 abdullah77044/chatroom-2'
+//                 }
+//             }
+//         }
+//     }
+// }
 // pipeline{
 //     agent any
 
