@@ -1,3 +1,7 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger'
+    ]
 
 pipeline{
     agent any
@@ -32,6 +36,15 @@ pipeline{
                     sh 'docker run -itd -p 8081:8080 abdullah77044/chatroom-2'
                 }
             }
+        }
+    }
+    post {
+        always {
+            echo 'slack Notification.'
+            slackSend channel: '#demo',
+            color: COLOR_MAP [currentBuild.currentResult],
+            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URl}"
+            
         }
     }
 }
