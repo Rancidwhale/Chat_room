@@ -33,7 +33,7 @@ pipeline{
         stage('docker push'){
             steps{
                 script{
-                    withDockerRegistry(credentialsId: 'fe43025c-38ee-4ef6-aba0-da7ef52ef72a'){
+                    withDockerRegistry(credentialsId: 'docker-cred'){
                         sh 'docker push abdullah77044/chatroom-2'
                     }
                 }
