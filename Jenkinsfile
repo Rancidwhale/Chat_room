@@ -30,6 +30,15 @@ pipeline{
                 }
             }
         }
+        stage('docker push'){
+            steps{
+                script{
+                    withDockerRegistry(credentialsId: 'fe43025c-38ee-4ef6-aba0-da7ef52ef72a'){
+                        sh 'docker push abdullah77044/chatroom-2'
+                    }
+                }
+            }
+        }
         stage('deploy'){
             steps{
                 script{
@@ -64,15 +73,15 @@ pipeline{
 //                 }
 //             }
 //         }
-//         stage('docker push'){
-//             steps{
-//                 script{
-//                     withDockerRegistry(credentialsId: 'fe43025c-38ee-4ef6-aba0-da7ef52ef72a'){
-//                         sh 'docker push abdullah77044/chatroom-2'
-//                     }
-//                 }
-//             }
-//         }
+        // stage('docker push'){
+        //     steps{
+        //         script{
+        //             withDockerRegistry(credentialsId: 'fe43025c-38ee-4ef6-aba0-da7ef52ef72a'){
+        //                 sh 'docker push abdullah77044/chatroom-2'
+        //             }
+        //         }
+        //     }
+        // }
 //         stage('deploy'){
 //             steps{
 //                 script{
