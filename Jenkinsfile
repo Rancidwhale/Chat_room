@@ -26,7 +26,8 @@ pipeline{
             steps{
                 withSonarQubeEnv('sqube-server') {
                     sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Chat-room \
-                    -Dsonar.projectKey=Chat-room'''
+                     -Dsonar.java.binaries=. \
+                     -Dsonar.projectKey=Chat-room'''
                 }
             }
         }
