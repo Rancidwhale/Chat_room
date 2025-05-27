@@ -25,8 +25,8 @@ pipeline{
         stage("Sonarqube Analysis "){
             steps{
                 withSonarQubeEnv('sqube-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=DevSecOps-Project \
-                    -Dsonar.projectKey=DevSecOps-Project'''
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Chat-room \
+                    -Dsonar.projectKey=Chat-room'''
                 }
             }
         }
@@ -74,7 +74,7 @@ pipeline{
         stage("Docker Build & Push"){
             steps{
                 script{
-                    sh 'docker build --build-arg TMDB_V3_API_KEY=$TMDB_V3_API_KEY -t $IMAGE_NAME .'
+                    sh 'docker build -t $IMAGE_NAME .'
                 }
             }
         }
